@@ -1,47 +1,12 @@
-@media (min-width: 300px) {
-    .grid-item {
-        width: 100%;
-    }
-    .grid-sizer {
-        width: 0;
-    }
-}
-
-@media (min-width: 800px) {
-    .grid-item {
-        width: 48%;
-    }
-    .grid-sizer {
-        width: 2%;
-    }
-}
-
-@media (min-width: 1300px) {
-    .grid-item {
-        width: 32%;
-    }
-    .grid-sizer {
-        width: 2%;
-    }
-}
-
-@media (min-width: 1580px) {
-    .grid-item {
-        width: 24%;
-    }
-    .grid-sizer {
-        width: 3%;
-    }
+.grid-item {
+    width: auto;
 }
 
 .grid-item--width2 {
     width: 400px;
 }
 
-
-/*.mygridImg {
+.mygridImg {
     height: auto;
-    width: auto;
-    max-width: 300px;
-    max-height: 300px;
-}*/
+    width: 500px;
+}

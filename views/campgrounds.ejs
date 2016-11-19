@@ -27,11 +27,10 @@
                 </div>
             </div>
             <div class="col-md-10 col-sm-8 col-xs-12 ">
-                <div class="grid"  style="margin: 0 auto;" data-masonry='{ 
-                "isFitWidth":true, "itemSelector": ".grid-item", "columnWidth": ".grid-sizer" }'>
-                <div class="grid-sizer"></div>
+                <div class="grid"  style="margin: 0 auto;"  data-masonry='{ 
+                "isFitWidth":true, "itemSelector": ".grid-item", "columnWidth": 50 }'>
                 <% campgrounds.forEach(function(camp){ %>
-                    <div class="grid-item">     
+                    <div class="grid-item" > 
                         <div class="thumbnail"> 
                             <img class="mygridImg" src=" <%= camp.image %>" />
                             <div class="caption">

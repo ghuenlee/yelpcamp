@@ -1,45 +1,13 @@
-<!-- Include the header -->
-<% include partials/header  %>
-<div class=" text-center">
-    <header class="jumbotron">   
-        <h1> This is the campgrounds page!</h1>
-        <p> Views our selection of campgrounds from all over the world!</p>
-        <a href="/" class="btn btn-default"> Go to Home </a>
-        <a href="/campgrounds/new" class="btn btn-success"> Add a campground </a>
-    </header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-3"> 
-                <p> YelpCamp! </p> 
-                <div class="list-group">
-                    <li class="list-group-item"> Info 1 </li>
-                    <li class="list-group-item"> Info 2 </li>
-                    <li class="list-group-item"> Info 3 </li>
-                    <li class="list-group-item"> Info 1 </li>
-                    <li class="list-group-item"> Info 2 </li>
-                    <li class="list-group-item"> Info 3 </li>
-                    <li class="list-group-item"> Info 1 </li>
-                    <li class="list-group-item"> Info 2 </li>
-                    <li class="list-group-item"> Info 3 </li>
-                    <li class="list-group-item"> Info 1 </li>
-                    <li class="list-group-item"> Info 2 </li>
-                    <li class="list-group-item"> Info 3 </li>
-                </div>
-            </div>
-            <div class="col-md-9 col-sm-8" style="margin: 0 auto;">
+<% include partials/header %>
+            <div class="container-fluid">
+            <div class="grid"  data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 50 }'  >
                 <% campgrounds.forEach(function(camp){ %>
-                        <div class="thumbnail"> 
+                        <div class="grid-item thumbnail"> 
                             <img class="mygridImg" src=" <%= camp.image %>" />
-                            <div class="caption">
-                                <h3><%= camp.name %> </h3> 
-                            </div>
+                            
                         </div>
                     
                 <% }) %>
             </div>
-        </div>
-    </div>
-    
-</div>
-<!-- Include the footer -->
-<% include partials/footer  %>
+            </div>
+<% include partials/footer %>
