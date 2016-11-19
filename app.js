@@ -6,7 +6,7 @@ var express = require('express'),
     bodyParser = require('body-parser');
 
 app.set('view engine', 'ejs');
-
+app.set('port', (process.env.PORT || 5000));
 // ====================================== Variables ======================================
 
 var campgrounds = [{
@@ -67,6 +67,6 @@ app.post('/campgrounds', function (req, res) {
 
 // ====================================== Server ======================================
 
-app.listen(8080, '0.0.0.0', function () {
-    console.log('Server started on port 8080');
+app.listen(app.get('port'), function () {
+    console.log('Server started ');
 })
