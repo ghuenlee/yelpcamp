@@ -1,28 +1,29 @@
 <!-- Include the header -->
 <% include partials/header  %>
-<div class="container text-center">
-  <br/>
-  <header class="jumbotron">
-    <h1> Want to add a new campground?</h1>
-    <p> Add a new campground for the whole world to see!</p>
-    <a href="/" class="btn btn-default"> Go to Home </a>
-    <a href="/campgrounds" class="btn btn-primary"> View campgrounds </a>
-  </header>
-  <h2> Input your new Campground's information!</h2>
-  <div style="width:40%; margin:30px auto;">
-    <form action="/campgrounds" method="POST">
-      <div class="form-group">
-        <!-- <label for="campName">Campground name: </label> -->
-        <input type="text" class="form-control" name="campNameField" id="campName" placeholder="Campground name...">
-      </div>
-      <div class="form-group">
-        <!-- <label for="campImage">Image: </label> -->
-        <input type="text" class="form-control" name="campImageField" id="campImage" placeholder="Image URL...">
-      </div>
-      <button type="submit" class="btn btn-success btn-block btn-lg">Submit</button>
-    </form>
+  <div class="container text-center">
+    <br/>
+    <header class="jumbotron">
+      <h1> Want to add a new campground?</h1>
+      <p> Add a new campground for the whole world to see!</p>
+      <a href="/" class="btn btn-default"> Go to Home </a>
+      <a href="/campgrounds" class="btn btn-primary"> View campgrounds </a>
+    </header>
+    <h2> Input your new Campground's information!</h2>
+    <div style="width:40%; margin:30px auto;">
+      <form action="/campgrounds" method="POST">
+        <div class="form-group">
+          <input type="text" class="form-control" name="campNameField" id="campName" placeholder="Campground name...">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="campImageField" id="campImage" placeholder="Image URL...">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" name="campDescField" placeholder="Campground's description..." rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success btn-block btn-lg">Submit</button>
+      </form>
+    </div>
   </div>
-</div>
-<br/>
-<!-- Include the footer -->
-<% include partials/footer  %>
+  <br/>
+  <!-- Include the footer -->
+  <% include partials/footer  %>

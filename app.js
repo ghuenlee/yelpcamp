@@ -3,31 +3,25 @@
 var express = require('express'),
     app = express(),
     ejs = require('ejs'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose');
 
 app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 5000));
-// ====================================== Variables ======================================
+mongoose.connect('mongodb://localhost/yelpcamp');
 
-var campgrounds = [{
-    name: "Salmon Creek",
-    image: "https://farm9.staticflickr.com/8225/8524305204_43934a319d.jpg"
-}, {
-    name: "Granite Hill",
-    image: "https://farm4.staticflickr.com/3273/2602356334_20fbb23543.jpg"
-}, {
-    name: "Mountain Goat's Rest",
-    image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg"
-}, {
-    name: "Rasberry's domain",
-    image: "http://i.telegraph.co.uk/multimedia/archive/03386/alamy-raspberries-_3386897b.jpg"
-}, {
-    name: "Salmon Creek",
-    image: "https://farm9.staticflickr.com/8225/8524305204_43934a319d.jpg"
-}, {
-    name: "Granite Hill",
-    image: "https://farm4.staticflickr.com/3273/2602356334_20fbb23543.jpg"
-}, ];
+// ====================================== Schemas ======================================
+
+var campgroundSchema = mongoose.Schema({
+    name: String,
+    url: String,
+    description: String
+});
+var Campground = mongoose.model('Campground', campgroundSchema);
+
+
+
+// ====================================== Variables ======================================
 
 // ====================================== Middleware ======================================
 
@@ -43,9 +37,12 @@ app.get('/', function (req, res) {
     res.render('landing');
 });
 app.get('/campgrounds', function (req, res) {
-    res.render('campgrounds', {
-        campgrounds: campgrounds
+    Campground.find({}, function (err, campgrounds) {
+        res.render('campgrounds', {
+            campgrounds: campgrounds
+        });
     });
+
 });
 app.get('/test', function (req, res) {
     res.render('test', {
@@ -56,15 +53,25 @@ app.get('/campgrounds/new', function (req, res) {
     res.render('new');
 });
 app.post('/campgrounds', function (req, res) {
-    var newCamp = {
+    Campground.create({
         name: req.body.campNameField,
-        image: req.body.campImageField
-    };
-    campgrounds.push(newCamp);
-    console.log('Someone sent a POST request to /campgrounds !');
-    res.redirect('/campgrounds');
+        description: req.body.campDescField,
+        url: req.body.campImageField
+    }, function (err, campground) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Campground created!');
+            console.log(campground);
+            res.redirect('/campgrounds');
+        }
+    });
+
 });
 
+app.get('/campgrounds/:id', function (req, res) {
+    res.render('show');
+});
 // ====================================== Server ======================================
 
 app.listen(app.get('port'), function () {

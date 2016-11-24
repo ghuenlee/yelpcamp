@@ -1,5 +1,6 @@
 .grid-item {
-    width: auto;
+    width: 300px;
+    height: auto;
 }
 
 .grid-item--width2 {
@@ -8,5 +9,5 @@
 
 .mygridImg {
     height: auto;
-    width: 500px;
+    max-width: 100%;
 }
