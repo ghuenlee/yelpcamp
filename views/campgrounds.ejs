@@ -8,32 +8,43 @@
             <a href="/campgrounds/new" class="btn btn-success"> Add a campground </a>
         </header>
         <div class="container">
-            <div class="row" style="display: flex; flex-wrap: wrap">
-                <% campgrounds.forEach(function(camp){ %>
-                    <div class=" col-md-3 col-sm-6">
-                        <div class="thumbnail" style=" padding:0;">
-                            <img class="mygridImg" src=" <%= camp.url %>" />
-                            <div>
-                                <p class="text-right" style="margin:0; padding-top:5px; padding-right: 5px">
-                                    <a href="" class="btn btn-warning"> Delete</a>
-                                    <a href="" class="btn btn-default"> Modify</a>
-                                </p>
+            <% if (error == ("NotFound")) { %>
+                <div class="alert alert-danger">
+                    <strong>Error!</strong> No campground with the specified ID was found!
+                </div>
+                <% } %>
+                    <div class="row" style="display: flex; flex-wrap: wrap">
+                        <% campgrounds.forEach(function(camp){ %>
+                            <div class=" col-md-3 col-sm-6">
+                                <div class="thumbnail" style=" padding:0;">
+                                    <img class="mygridImg" src=" <%= camp.url %>" />
+                                    <div>
+                                        <p class="text-right" style="margin:0; padding-top:5px; padding-right: 5px">
+                                        </p>
+                                    </div>
+                                    <div class="caption">
+                                        <div class="container-fluid">
+                                            <p class="pull-right">
+                                                <a href=""> <span style="font-size:20px;" class="glyphicon glyphicon-remove"></span></a>
+                                                <a href=""> <span style="font-size:20px;" class="glyphicon glyphicon-pencil"></span></a>
+                                            </p>
+                                            <h3 style="margin:0; margin-bottom:10px">
+                                                <%= camp.name %>
+                                            </h3>
+                                        </div>
+                                        <hr style="margin:0">
+                                    </div>
+                                    <div class="container-fluid">
+                                        <p>
+                                            <%= camp.description %>
+                                        </p>
+                                        <p><a href="campgrounds/<%= camp._id%>" class="btn btn-primary">View details</a>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="caption">
-                                <h3 style="margin:0; margin-bottom:10px">
-                                    <%= camp.name %>
-                                </h3>
-                            </div>
-                            <div class="container-fluid">
-                                <p>
-                                    <%= camp.description %>
-                                </p>
-                                <p><a href="/show/<%= camp._id%>" class="btn btn-primary">View details</a></p>
-                            </div>
-                        </div>
+                            <% }) %>
                     </div>
-                    <% }) %>
-            </div>
         </div>
     </div>
     <!-- Include the footer -->

@@ -37,9 +37,11 @@ app.get('/', function (req, res) {
     res.render('landing');
 });
 app.get('/campgrounds', function (req, res) {
+    var errorMsg = req.query.error;
     Campground.find({}, function (err, campgrounds) {
         res.render('campgrounds', {
-            campgrounds: campgrounds
+            campgrounds: campgrounds,
+            error: errorMsg
         });
     });
 
@@ -70,7 +72,17 @@ app.post('/campgrounds', function (req, res) {
 });
 
 app.get('/campgrounds/:id', function (req, res) {
-    res.render('show');
+    Campground.findById(req.params.id, function (err, foundCampground) {
+        if (err || foundCampground == null) {
+            console.log('No campground found!');
+            res.redirect('/campgrounds?error=NotFound')
+        } else {
+            console.log('The id was found!');
+            res.render('show', {
+                campground: foundCampground,
+            });
+        }
+    });
 });
 // ====================================== Server ======================================
 
